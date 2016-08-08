@@ -1,0 +1,50 @@
+{% extends "snips/base.html" %}
+{% set currentPage = "Upload" %}
+{% block body %}
+<center>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+  			<h1>Upload Files:</h1>
+		</div>
+	  	<div class="panel-body">
+			<form id="drop" action="/uploading" method="post" enctype="multipart/form-data">
+				<div class = "row">
+					<div class = "col-md-10 text-left">
+						<input name="file" type="file" multiple />
+					</div>
+		    		<div class = "col-md-2 text-right">
+		    			<button class="btn btn-default" type="submit">Submit</button>
+		    		</div>
+		    	</div>
+		  </form>
+	  	</div>
+	  	<div class="panel-heading">
+			<h2>Recent Uploaded Files:</h2>
+		</div>
+		<div class="panel-body">
+			<table id="example" class="display" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for file in items %}
+					<tr>
+						<th><a style="color:black;" href="{{'/file/%s'%file.fid}}">{{ file.title }}</a></th>
+						<th><a style="color:black;" href="{{'/file/%s'%file.fid}}">{{ file.last_modified }}</a></th>
+					</tr>
+				{% endfor %}
+				</tbody>
+				<tfoot>
+		            <tr>
+		                <th>Title</th>
+						<th>Date</th>
+					</tr>
+        		</tfoot>
+			</table>
+		</div>
+	</div>
+</center>
+{% endblock %}

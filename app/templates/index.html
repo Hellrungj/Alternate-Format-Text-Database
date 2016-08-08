@@ -1,0 +1,44 @@
+{% extends "snips/base.html" %}
+{% set currentPage = "Home" %}
+{% block body %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<center>
+  			<h1>View Files:</h1>
+		</center>
+	</div>
+	<div class="panel-body">
+		<table id="example" class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Author</th>
+					<th>Edition</th>
+					<th>Last Modified</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for file in items %}
+            <tr>
+				<th>
+					<div class="row">
+						<div class="col-md-2">
+							<a class="btn btn-default" href="{{ '/download/%s'%file.id}}">
+								<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+							</a>
+						</div>	
+						<div class="col-md 10">
+							<a style="color:black;" href="{{'/file/%s'%file.id}}">{{ file.title }}</a>
+						</div>
+					</div>
+				</th>
+				<th><a style="color:black;" href="{{'/file/%s'%file.id}}">{{ file.author }}</a></th>
+				<th><a style="color:black;" href="{{'/file/%s'%file.id}}">{{ file.edition }}</a></th>
+				<th><a style="color:black;" href="{{'/file/%s'%file.id}}">{{ file.last_modified }}</a></th>
+			</tr>
+			{% endfor %}
+   			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}

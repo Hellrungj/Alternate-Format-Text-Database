@@ -1,0 +1,19 @@
+<!-- This is the navigation bar that should be found at the top of the page -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav nav-tabs">
+      {% for menuItem in cfg['mainMenu'] %}
+        {% if menuItem['title'] == currentPage %}
+          <li role="presentation">
+            <a href="{{menuItem['link']}}" style="color:black;">{{menuItem['title']}}</a>
+          </li> 
+        {% else %} 
+          <li role="presentation">
+            <a href="{{menuItem['link']}}" style="color:black;">{{menuItem['title']}}</a>
+          </li> 
+        {% endif %}
+      {% endfor %}
+      </ul>
+  </div>
+</nav>

@@ -1,0 +1,6 @@
+Flask
+werkzeug
+jinja2
+peewee>=2.7.3
+wtforms
+wtf-peewee
