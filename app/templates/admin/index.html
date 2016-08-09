@@ -1,0 +1,60 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+{{ super() }}
+<div class="row-fluid">
+
+    <div>
+        {% if current_user.is_authenticated %}
+        <center>
+            <h1>Welcome to the Disability and Acessability Services</h1> 
+            <h1> Alternate Format Text Database </h1>
+            
+            <h4>
+               Hint:The tabs above allows you to access any table in the database. 
+            </h4>
+        </center>
+        <p class="lead">
+          The tables current in the database include:
+            <p>
+            FileData - Holds all the data for the files in the database.
+            </p>
+            <p>
+            User - Holds all the data for each user.
+            </p>
+            <p>
+            Role - Holds all the data for each role.
+            </p>
+            <p>
+            UserRole - Holds all the relationships for the user. This table connects the user to there role in the database. 
+            </p>
+            <p class="lead">
+            Future Versions will include:
+            </p>
+            <p>
+            Admin File Uploading 
+            </p>
+        </p>
+        
+        {% else %}
+        <form method="POST" action="">
+            {{ form.hidden_tag() if form.hidden_tag }}
+            {% for f in form if f.type != 'CSRFTokenField' %}
+            <div>
+            {{ f.label }}
+            {{ f }}
+            {% if f.errors %}
+            <ul>
+                {% for e in f.errors %}
+                <li>{{ e }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            </div>
+            {% endfor %}
+            <button class="btn" type="submit">Submit</button>
+        </form>
+        {{ link | safe }}
+        {% endif %}
+    </div>
+</div>
+{% endblock body %}
