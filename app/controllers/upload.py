@@ -58,20 +58,22 @@ def uploading():
     ERROR = 2  
           
   if ERROR == 0:
-    return redirect('/upload',code=302)
+    if UserRole.select().where(UserRole.role == current_user.id, UserRole.user == 1): 
+      return redirect('/admin/upload/',code=302)
+    else:
+      return redirect('/upload',code=302)
   else:  
     if ERROR == 1: 
       message = "An error occured during the authentication process"
     else: 
       message = "An error occured during the upload process."
     return message
+    
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+

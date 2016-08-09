@@ -104,57 +104,7 @@ class FileAdmin(BaseView):
         get_time = datetime.datetime.now()
         Day = get_time.strftime("%Y-%m-%d")
         result = File.select().where(File.last_modified_by == current_user.id)
-        return self.render("admin/upload.html", cfg = cfg, items = result)
-
-    @login_required
-    @expose('/')
-    def uploading(self):
-      app.logger.info("Attempting to upload file.")
-      ERROR = 0
-      file = request.files['file']
-      try:
-        get_time = datetime.datetime.now()
-        time_stamp = get_time.strftime("%Y-%m-%d")
-        lastmodified = get_time.strftime("%Y-%m-%d %I:%M")
-        filename = ('UploadedFile' + str(time_stamp) + "." + str(file.filename))
-        directory_paths = "app/static/files/uploads/"
-        if not os.path.exists(directory_paths):
-                try:
-                  os.makedirs(directory_paths)
-                except OSError as e:
-                  print e.errno
-                  pass
-                
-        complete_path = (directory_paths + str(filename)).replace(" ", "")
-        file.save(complete_path)
-        app.logger.info("Upload file.")
-        Exists = os.path.exists(complete_path)
-        app.logger.info(("Exists: " + str(Exists)))
-          
-        data = File(  title     = file.filename,
-                      author    = " ",
-                      edition   = " ",
-                      size      = " ",
-                      filename  = filename,
-                      file_type = str(file.filename.split(".").pop()),
-                      created_at = time_stamp,
-                      last_modified = lastmodified,
-                      last_modified_by = current_user.id,
-                      file_path = complete_path,
-                      hidden    = 0)
-        data.save()
-        app.logger.info("Updated the database.")
-      except:
-        ERROR = 2  
-              
-      if ERROR == 0:
-        return redirect('/upload',code=302)
-      else:  
-        if ERROR == 1: 
-          message = "An error occured during the authentication process"
-        else: 
-          message = "An error occured during the upload process."
-        return message                       
+        return self.render("/admin/upload.html", cfg = cfg, items = result)
     
 class AdminLogout(BaseView):
     @login_required
@@ -170,8 +120,8 @@ class StudentView(BaseView):
     def StudentView(self):
         return redirect('/index')
 
-admin.add_view(FileDataAdmin(File, name='FileData'))
-admin.add_view(FileAdmin(name='FileUpload', endpoint="fileupload"))
+admin.add_view(FileDataAdmin(File, name='Files'))
+admin.add_view(FileAdmin(name='Upload', endpoint="upload"))
 admin.add_view(UserAdmin(User))
 admin.add_view(RoleAdmin(Role))
 admin.add_view(UserRolesAdmin(UserRole))
