@@ -12,8 +12,8 @@ from app import allImports
 # Include an import for every python file that is serving a webpage
 #import your new python files here. It is not a part of the module until it is imported
 print("Starting application")
-from app import main
-from app import auth
-from app import upload
-from app import edit
-from app import admin
+from app.controllers.admin import *
+from app.controllers.auth import *
+from app.controllers.edit import *
+from app.controllers.main import *
+from app.controllers.upload import *

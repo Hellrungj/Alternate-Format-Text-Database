@@ -1,2 +1,5 @@
-__pycache__/
-.idea/
+app/.~c9_invoke_*
+*.pyc
+data/
+venv/*
+app/static/files/*

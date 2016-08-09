@@ -8,7 +8,7 @@ from flask import Flask, render_template, redirect, \
 import pprint
 from app import models
 from models import *                # all the database models
-from app.switch import switch       # implements switch/case statements
+from app.logic.switch import switch # implements switch/case statements
 from flask_security import Security, PeeweeUserDatastore
 
 ''' Creates an Flask object; @app will be used for all decorators.

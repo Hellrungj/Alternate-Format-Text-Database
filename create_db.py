@@ -10,7 +10,7 @@ import datetime
 # Don't forget to import your own models!
 from app.models import *
 
-conf = load_config('app/config.yaml')
+conf = load_config('app/config/config.yaml')
 
 sqlite_dbs  = [ conf['databases']['dev']
                 # add more here if multiple DBs

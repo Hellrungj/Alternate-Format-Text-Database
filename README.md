@@ -14,6 +14,7 @@ Flask-Admin provides a convenient way to add a  around the current Flask web app
 Here are some helpful links:
 - Flask: http://flask.pocoo.org/
 - PeeWee: http://docs.peewee-orm.com/en/latest/
+- Flask-PeeWee: http://docs.peewee-orm.com/projects/flask-peewee/en/latest/
 - Flask-Admin: https://flask-admin.readthedocs.org/en/latest/
 - Flask-Security: https://pythonhosted.org/Flask-Security/
 - SQLite database: https://sqlite.org/
@@ -28,9 +29,11 @@ To run this app, you'll need to run:
 The Setup.sh file will install:
 - Python 3.3
 - Flask
+- Peewee
+- pyyaml
+- Flask-PeeWee
 - Flask-Admin
 - Flask-Security
-- Peewee
 
 The create_db.py file will:
 - Create the database file in the folder data
