@@ -1,0 +1,23 @@
+{% extends "admin/snips/base.html" %}
+{% block body %}
+{{ super() }}
+<center>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+  			<h1>Upload Files:</h1>
+		</div>
+	  	<div class="panel-body">
+			<form id="drop" action="/uploading" method="post" enctype="multipart/form-data">
+				<div class = "row">
+					<div class = "col-md-10 text-left">
+						<input name="file" type="file" multiple />
+					</div>
+		    		<div class = "col-md-2 text-right">
+		    			<button class="btn btn-default" type="submit">Submit</button>
+		    		</div>
+		    	</div>
+		  </form>
+	  	</div>
+	</div>
+</center>
+{% endblock body %}
