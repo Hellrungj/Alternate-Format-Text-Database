@@ -4,7 +4,7 @@ log:
 
 # All the databases used by the system
 databases:
-  dev: "data/DAS.db"
+  dev: "data/DAS.sqlite"
   stage: ""
   prod: ""
   engine: "peewee.SqliteDatabase"

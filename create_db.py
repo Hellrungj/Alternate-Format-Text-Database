@@ -5,7 +5,6 @@ Update this file as you update your database.
 '''
 import os, sys
 import importlib
-import datetime
 
 # Don't forget to import your own models!
 from app.models import *
