@@ -120,7 +120,7 @@ class StudentView(BaseView):
     def StudentView(self):
         return redirect('/index')
 
-#admin.add_view(MyFileAdmin(path, '/static/' , name='Files'))
+admin.add_view(MyFileAdmin(path, '/static/' , name='Files'))
 admin.add_view(FileDataAdmin(File, name = "FileData"))
 admin.add_view(UserAdmin(User))
 admin.add_view(RoleAdmin(Role))
