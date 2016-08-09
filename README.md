@@ -26,8 +26,10 @@ To run this app, you'll need to run:
 - create_db.py
 - app.py
 
+You will need to install:
+-  Python 2.7
+
 The Setup.sh file will install:
-- Python 3.3
 - Flask
 - Peewee
 - pyyaml
