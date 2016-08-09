@@ -19,12 +19,12 @@ returns a replacement function. See start.py for an example"
 
 app = Flask(__name__)
 cfg = load_config('config/config.yaml')
-# Flask config
-app.config.update(SECRET_KEY = '123456790', 
-DEBUG = True,
-# Flask-Security config
-SECURITY_PASSWORD_HASH = "pbkdf2_sha512",
-SECURITY_PASSWORD_SALT = "ATGUOHAELKiubahiughaerGOJAEGj")
+
+# Flask configuration: 
+app.config.update(  SECRET_KEY = cfg['flask']['secret_key'],
+                    DEBUG = cfg['flask']['debug'],
+                    SECURITY_PASSWORD_HASH = cfg['flask_security']['security_password_hash'],
+                    SECURITY_PASSWORD_SALT= cfg['flask_security']['security_password_salt'])
 
 db = SqliteDatabase(cfg['databases']['dev'])
 

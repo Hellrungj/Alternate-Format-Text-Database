@@ -17,6 +17,14 @@ models:
   - UserRole
   - Post
   - File
+  
+flask:
+  secret_key: '123456790'
+  debug: True
+flask_security:
+  security_password_hash: "pbkdf2_sha512"
+  security_password_salt: "ATGUOHAELKiubahiughaerGOJAEGj"
+  
 # this makes the navigation bar
 mainMenu:
 - title: "DAS Database"
