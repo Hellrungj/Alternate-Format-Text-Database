@@ -8,7 +8,7 @@ import os
 # Create a database
 from app.loadConfig import *
 
-cfg = load_config('app/config.yaml')
+cfg = load_config('app/config/config.yaml')
 db = SqliteDatabase(cfg['databases']['dev'])
 
 # Create database connection object

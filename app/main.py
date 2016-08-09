@@ -3,7 +3,7 @@ from flask import session, flash, abort, send_file, redirect
 from flask_security import login_required, current_user
 #Imports
 
-cfg = load_config('app/config.yaml')
+cfg = load_config('app/config/config.yaml')
 db = SqliteDatabase(cfg['databases']['dev'])
 
 @app.route('/')

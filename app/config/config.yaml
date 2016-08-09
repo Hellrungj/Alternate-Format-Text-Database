@@ -1,0 +1,106 @@
+# The log file location   
+log:
+  filename: "DAS.log"
+
+# All the databases used by the system
+databases:
+  dev: "data/DAS.db"
+  stage: ""
+  prod: ""
+engine: "peewee.SqliteDatabase"
+# For every config option for flask
+flask:
+  setting:
+    secert_key: '123456790'
+    debug: True
+# For every config option for flask secuity
+flask security: # For more infromation please read this page: https://pythonhosted.org/Flask-Security/configuration.html
+  core:
+    SECURITY_BLUEPRINT_NAME: "security"
+    SECURITY_URL_PREFIX: None 
+    SECURITY_FLASH_MESSAGES: True	
+    SECURITY_PASSWORD_HASH:	"pbkdf2_sha512"
+    SECURITY_PASSWORD_SALT:	"ATGUOHAELKiubahiughaerGOJAEGj"
+    SECURITY_EMAIL_SENDER: "no-reply@localhost.""	
+    SECURITY_TOKEN_AUTHENTICATION_KEY: auth_token	
+    SECURITY_TOKEN_AUTHENTICATION_HEADER:	Authentication-Token
+    SECURITY_TOKEN_MAX_AGE:	None 
+    SECURITY_DEFAULT_HTTP_AUTH_REALM: Login Required
+  urls:
+    SECURITY_LOGIN_URL:	"/login"
+    SECURITY_LOGOUT_URL: "/logout"	
+    SECURITY_REGISTER_URL: "/register"	
+    SECURITY_RESET_URL:	"/reset"
+    SECURITY_CHANGE_URL: "/change"	
+    SECURITY_CONFIRM_URL:	"/confirm"
+    SECURITY_POST_LOGIN_VIEW:	"/"
+    SECURITY_POST_LOGOUT_VIEW: "/"	
+    SECURITY_CONFIRM_ERROR_VIEW: None 	
+    SECURITY_POST_REGISTER_VIEW: None
+    SECURITY_POST_CONFIRM_VIEW:	None
+    SECURITY_POST_RESET_VIEW:	None
+    SECURITY_POST_CHANGE_VIEW: None	
+    SECURITY_UNAUTHORIZED_VIEW:	None
+  template paths:
+    SECURITY_FORGOT_PASSWORD_TEMPLATE: "security/forgot_password.html"	
+    SECURITY_LOGIN_USER_TEMPLATE:	"security/login_user.html"
+    SECURITY_REGISTER_USER_TEMPLATE: "security/register_user.html"	
+    SECURITY_RESET_PASSWORD_TEMPLATE:	"security/reset_password.html"
+    SECURITY_CHANGE_PASSWORD_TEMPLATE: "security/change_password.html"	
+    SECURITY_SEND_CONFIRMATION_TEMPLATE: "security/send_confirmation.html"	
+    SECURITY_SEND_LOGIN_TEMPLATE: "security/send_login.html"
+  feature flags:
+    SECURITY_CONFIRMABLE:	False
+    SECURITY_REGISTERABLE: False	
+    SECURITY_RECOVERABLE:	False
+    SECURITY_TRACKABLE:	False 
+    SECURITY_PASSWORDLESS: False	
+    SECURITY_CHANGEABLE: False
+  email:
+    SECURITY_EMAIL_SUBJECT_REGISTER: "Welcome"	
+    SECURITY_EMAIL_SUBJECT_PASSWORDLESS: "Login instructions"
+    SECURITY_EMAIL_SUBJECT_PASSWORD_NOTICE:	"Your password has been reset"
+    SECURITY_EMAIL_SUBJECT_PASSWORD_RESET: "Password reset instructions"	
+    SECURITY_EMAIL_SUBJECT_PASSWORD_CHANGE_NOTICE: "Your password has been changed"	
+    SECURITY_EMAIL_SUBJECT_CONFIRM: "Please confirm your email"
+  miscellaneous:
+    ECURITY_SEND_REGISTER_EMAIL: True	
+    SECURITY_SEND_PASSWORD_CHANGE_EMAIL: True	
+    SECURITY_SEND_PASSWORD_RESET_NOTICE_EMAIL: "5 days"	
+    SECURITY_CONFIRM_EMAIL_WITHIN: "5 days"	
+    SECURITY_RESET_PASSWORD_WITHIN:	"5 days"
+    SECURITY_LOGIN_WITHIN: "1 days"	
+    SECURITY_LOGIN_WITHOUT_CONFIRMATION: False	
+    SECURITY_CONFIRM_SALT: confirm-salt	
+    SECURITY_RESET_SALT: reset-salt	
+    SECURITY_LOGIN_SALT: login-salt	
+    SECURITY_REMEMBER_SALT:	remember-salt
+    SECURITY_DEFAULT_REMEMBER_ME:	False
+# For every table in the database, add an item here
+models:
+  mainDB:
+    - Role
+    - User
+    - UserRole
+    - Post
+    - File
+# this makes the navigation bar
+mainMenu:
+  - title: "DAS Database"
+    link: "/"
+  - title: "Upload"
+    link: "/upload"
+  - title: "Logout"
+    link: "/logout"
+    
+fileOperations:
+  allowedExtension:
+      pdf: "pdf"
+      doc: "doc"
+      docx: "docx"
+  allowedSize:
+      size: 8000000
+  dataPaths:
+      uploads: "static/files/uploads"
+      zips: "static/files/zips"
+      temp: "static/files/tmp"

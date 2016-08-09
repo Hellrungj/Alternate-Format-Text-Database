@@ -18,7 +18,8 @@ returns a replacement function. See start.py for an example"
 '''
 
 app = Flask(__name__)
-app.config.from_pyfile('config.py')
+cfg = load_config('app/config/config.yaml')
+app.config.from_pyfile('config/config.py')
 db = SqliteDatabase(cfg['databases']['dev'])
 
 # Setup Flask-Security    
