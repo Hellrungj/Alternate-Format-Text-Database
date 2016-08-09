@@ -55,13 +55,42 @@ db.create_tables(get_classes('mainDB'))
 #Data Creation#
 ###############
 
+# Creating the DASAdmin User and Role and Assigning the User a Role of Admin
 user  = User (  username  = "Admin",
                 email     = "DASAdmin@berea.edu",
                 password  = "Password"
                 ).save()
 
 role = Role ( name = "Admin",
-              description = "All Access"
+              description = "All Access."
+              ).save()
+              
+userrole = UserRole ( user = user,
+                      role = role
+                      ).save()
+                      
+# Creating the DASLaborStudent User and Role Assigning the User a Role of LaborStudent 
+user  = User (  username  = "DASLaborStudent",
+                email     = "DASLaborStudent@berea.edu",
+                password  = "Password"
+                ).save()
+
+role = Role ( name = "LaborStudent",
+              description = "Semi Access. No Admin Access."
+              ).save()
+              
+userrole = UserRole ( user = user,
+                      role = role
+                      ).save()
+                      
+# Creating the DASStudent User and Role Assigning the User a Role of Student  
+user  = User (  username  = "DASStudent",
+                email     = "DASStudent@berea.edu",
+                password  = "Password"
+                ).save()
+
+role = Role ( name = "Student",
+              description = "Limited Access."
               ).save()
               
 userrole = UserRole ( user = user,
