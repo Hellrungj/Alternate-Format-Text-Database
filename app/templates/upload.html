@@ -1,50 +1,32 @@
-{% extends "snips/base.html" %}
+{% extends "snips/base.html" %} 
 {% set currentPage = "Upload" %}
 {% block body %}
-<center>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-  			<h1>Upload Files:</h1>
-		</div>
-	  	<div class="panel-body">
-			<form id="drop" action="/uploading" method="post" enctype="multipart/form-data">
-				<div class = "row">
-					<div class = "col-md-10 text-left">
-						<input name="file" type="file" multiple />
-					</div>
-		    		<div class = "col-md-2 text-right">
-		    			<button class="btn btn-default" type="submit">Submit</button>
-		    		</div>
-		    	</div>
-		  </form>
-	  	</div>
-	  	<div class="panel-heading">
-			<h2>Recent Uploaded Files:</h2>
-		</div>
-		<div class="panel-body">
-			<table id="example" class="display" cellspacing="0" width="100%">
-				<thead>
-					<tr>
-						<th>Title</th>
-						<th>Date</th>
-					</tr>
-				</thead>
-				<tbody>
-				{% for file in items %}
-					<tr>
-						<th><a style="color:black;" href="{{'/file/%s'%file.fid}}">{{ file.title }}</a></th>
-						<th><a style="color:black;" href="{{'/file/%s'%file.fid}}">{{ file.last_modified }}</a></th>
-					</tr>
-				{% endfor %}
-				</tbody>
-				<tfoot>
-		            <tr>
-		                <th>Title</th>
-						<th>Date</th>
-					</tr>
-        		</tfoot>
-			</table>
-		</div>
-	</div>
-</center>
+
+<form id="drop" action="/uploading" method="post" enctype="multipart/form-data">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+	    </div>
+        <div class="panel-body">
+            <div>
+                <input type="file" name="file" multiple required></input> 
+            </div>
+            <div>
+                <label for="title-t">Title:</label>
+            	<input type="text" name="title" id="title-t" class="form-control" required> </input>
+            </div>
+            <div>
+                <label for="author-t">Author:</label>
+            	<textarea type="text" name="author" id="author-t" rows=1 cols=max class="form-control"></textarea>
+            </div>
+            <div>
+                <label for="edition-t">Edition:</label>
+            	<textarea type="text" name="edition" id="edition-t" rows=1 cols=max class="form-control"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="text-left">
+    	<input type="submit" class="btn btn-primary" value="Save">
+    	<a href="/index" class="btn btn-danger">Cancel</a>
+    </div>
+</form>
 {% endblock %}

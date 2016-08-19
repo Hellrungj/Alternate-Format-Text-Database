@@ -51,17 +51,35 @@ class Post(BaseModel):
 
     def __unicode__(self):
         return self.title
+        
+class Notification(BaseModel):
+    title = CharField(max_length=120)
+    date = DateTimeField()
+    user = ForeignKeyField(User)
+
+    def __unicode__(self):
+        return self.title
+        
+class Request(BaseModel):
+    title = CharField(max_length=120)
+    author = TextField(null=True)
+    edition = TextField(null=True)
+    ISBN = TextField(null=True)
+    created_at = DateTimeField()
+    user = ForeignKeyField(User)
+
+    def __unicode__(self):
+        return self.title
 
 class File(BaseModel):
     title = TextField()
-    author = TextField()
-    edition = TextField()
+    author = TextField(null=True)
+    edition = TextField(null=True)
     size = TextField()
     filename = TextField()
     file_type = TextField()
     created_at = DateTimeField()
     last_modified = DateTimeField()
-    last_modified_by = ForeignKeyField(User)
+    asigned = ForeignKeyField(User)
     file_path = TextField()
-    hidden = IntegerField() 
-
+    hidden = IntegerField(default = 0) 

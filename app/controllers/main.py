@@ -14,16 +14,20 @@ def Home():
     return redirect('/admin',code=302)
   else:
     return redirect('/index',code=302)
-    #return str(current_user.UserRole)
-    
     
 @app.route('/index')
 @login_required
 def Index():
-  items = File.select()
+  if UserRole.select().where(UserRole.role == current_user.id, UserRole.user == 1) or UserRole.select().where(UserRole.role == current_user.id, UserRole.user == 2):
+    items = File.select()
+  else:
+    items = File.select().where(File.asigned == current_user.id)
   amount = File.select().count()
   Search = "All Titles"
-  return render_template('index.html', cfg = cfg, items = items)
+  Notifications = Notification.select().where(Notification.user == current_user.id)
+  TotalN = Notification.select().count()
+  return render_template('index.html', cfg = cfg, items = items, current_user=current_user,
+                          UserRole=UserRole, Notifications=Notifications, TotalN=TotalN)
   
 @app.route("/download/<cmd>/", methods = ["POST","GET"])
 @login_required
@@ -38,7 +42,9 @@ def filedownload(cmd):
     message = "An error occured during the download process."
     return message
 
-
+@app.route("/testing", methods = ["GET"])
+def testing():
+   return render_template('notifications.html')
 	
 	
 

@@ -57,3 +57,6 @@ pip install -U "flask_security"
 
 pip install -U "flask_admin"
 # https://flask-admin.readthedocs.io/en/latest/
+
+pip install -U "hurry.filesize"
+# https://flask-admin.readthedocs.io/en/latest/

@@ -10,6 +10,7 @@ from app import models
 from models import *                # all the database models
 from app.logic.switch import switch # implements switch/case statements
 from flask_security import Security, PeeweeUserDatastore
+import os.path as op
 
 ''' Creates an Flask object; @app will be used for all decorators.
 from: http://simeonfranklin.com/blog/2012/jul/1/python-decorators-in-12-steps/
@@ -31,7 +32,7 @@ db = SqliteDatabase(cfg['databases']['dev'])
 # Setup Flask-Security    
 user_datastore = PeeweeUserDatastore(db, User, Role, UserRole)
 security = Security(app, user_datastore)
-#from app import app
+path = op.join(op.dirname(__file__), 'static/files/uploads')
 
 # Builds all the database connections on app run
 # Don't panic, if you need clarification ask.

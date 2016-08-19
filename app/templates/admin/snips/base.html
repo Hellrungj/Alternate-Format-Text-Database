@@ -1,3 +1,4 @@
+{% extends 'admin/master.html' %}
 <!--This page includes all base scripts and stylesheets that should be present on every html page -->
 <!DOCTYPE html>
 <html lang="en-US">
@@ -44,7 +45,6 @@
 
   </head>
   <body>
-      {% include 'admin/master.html' %}
     <div class="container">
       {# All content should get rendered in here #}
       {% block body %} {% endblock %}  

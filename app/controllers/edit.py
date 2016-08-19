@@ -11,7 +11,7 @@ import datetime
 @roles_accepted("Admin","Labor Student")
 def file(num):
   item = File.select().where(File.id == num).get()
-  return render_template("edit.html", item = item, cfg = cfg)
+  return render_template("edit.html", item = item, cfg = cfg, UserRole=UserRole)
   
 @app.route('/edit/<num>', methods=['POST'])
 @login_required
@@ -22,23 +22,23 @@ def edit(num):
     a = request.form['author']
     e = request.form['edition']
     item = File.select().where(File.id == num).get()
-    
-    if len(t) > 50:
-      shortenedTitle = t[:50]  
-    else: 
-      shortenedTitle = t
       
     get_time = datetime.datetime.now()
     time_stamp = get_time.strftime("%Y-%m-%d %H:%M")
     
-    item.fulltitle = t
-    item.shorttitle = shortenedTitle
+    item.title = t
     item.author = a
     item.edition = e
     item.last_modified = time_stamp
     item.save()
     
-  item = File.select().where(Files.id == num).get()
+  item = File.select().where(File.id == num).get()
+  app.logger.info("Updated the File table in database.")
+  Ndata = Notification(title = "Edited a file",
+                      date  = str(time_stamp),
+                      user = current_user.id)
+  Ndata.save()
+  app.logger.info("Updated the Notification table in database.")
   return redirect('/index',code=302)
 
 @app.route("/delete/<num>", methods = ["POST"])
@@ -47,18 +47,22 @@ def edit(num):
 def delete(num):
   try:
     file = File.select().where(File.id == num).get()
-    filepath = ('app/static/files/uploads/'+ str(file.filename)).replace(" ", "")
-    os.remove(filepath)
-  
-    file.hidden = 1
-    file.save()
+    #filepath = ('app/static/files/uploads/'+ str(file.filename)).replace(" ", "")
+    #os.remove(filepath)
+    #file.hidden = 1
+    #file.save()
     #RECORD THE CHANGE
     get_time = datetime.datetime.now()
     time_stamp = get_time.strftime("%Y-%m-%d %I:%M")
-    
     update_last_modified = File.update(last_modified=time_stamp, hidden = 1).where(File.id==num)
     update_last_modified.execute()
-    return redirect('/',code=302)
+    app.logger.info("Delete a column in File the table.")
+    Ndata = Notification(title = "Deleted a file",
+                      date  = str(time_stamp),
+                      user = current_user.id)
+    Ndata.save()
+    app.logger.info("Updated the Notification table in database.")
+    return redirect('/index',code=302)
   except Exception,e:
     app.logger.info("{0} attempting to delete a file.".format(str(e)))
     message = "An error occured during the delete process of the file."

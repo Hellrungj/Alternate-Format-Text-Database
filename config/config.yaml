@@ -16,6 +16,8 @@ models:
   - User
   - UserRole
   - Post
+  - Notification
+  - Request
   - File
   
 flask:
@@ -25,14 +27,18 @@ flask_security:
   security_password_hash: "pbkdf2_sha512"
   security_password_salt: "ATGUOHAELKiubahiughaerGOJAEGj"
   
-# this makes the navigation bar
-mainMenu:
-- title: "DAS Database"
-- link: "/"
-- title: "Upload"
-- link: "/upload"
-- title: "Logout"
-- link: "/logout"
+# this makes the navigation bar     #src: "/static/images/NavLogo.png"
+LaborNavibar:
+  - title: "DAS Database"
+    link: "/index"
+  - title: "Upload"
+    link: "/upload"
+    
+StudentNavibar:
+  - title: "DAS Database"
+    link: "/index"
+  - title: "Request Alt. Text"
+    link: "/request"
 
 fileOperations:
   allowedExtension:

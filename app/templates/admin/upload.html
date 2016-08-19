@@ -1,23 +1,39 @@
-{% extends "admin/snips/base.html" %}
+{% extends "admin/snips/base.html" %} 
+{% set currentPage = "Upload" %}
 {% block body %}
-{{ super() }}
-<center>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-  			<h1>Upload Files:</h1>
-		</div>
-	  	<div class="panel-body">
-			<form id="drop" action="/uploading" method="post" enctype="multipart/form-data">
-				<div class = "row">
-					<div class = "col-md-10 text-left">
-						<input name="file" type="file" multiple />
-					</div>
-		    		<div class = "col-md-2 text-right">
-		    			<button class="btn btn-default" type="submit">Submit</button>
-		    		</div>
-		    	</div>
-		  </form>
-	  	</div>
-	</div>
-</center>
-{% endblock body %}
+
+<ul class="nav nav-tabs">
+    <li>
+        <a href="/admin/file/">List</a>
+    </li>
+    <li class="active">
+        <a href="#">Create</a>
+    </li>
+    
+</ul>
+<form id="drop" action="/admin/uploading" class="admin-form form-horizontal" method="post" enctype="multipart/form-data">
+    <div class="admin-form form-horizontal">
+        <fieldset>
+            <div class="control">
+                <input type="file" name="file" multiple required></input> 
+            </div>
+            <div>
+                <label for="title-t" class="control-label">Title</label>
+            	<input type="text" name="title" id="title-t" class="form-control" required> </input>
+            </div>
+            <div>
+                <label for="author-t" class="control-label">Author</label>
+            	<textarea type="text" name="author" id="author-t" rows=1 cols=max class="form-control"></textarea>
+            </div>
+            <div>
+                <label for="edition-t" class="control-label">Edition</label>
+            	<textarea type="text" name="edition" id="edition-t" rows=1 cols=max class="form-control"></textarea>
+            </div>
+        <hr>
+        <div class="text-left">
+        	<input type="submit" class="btn btn-primary" value="Save">
+        	<a href="/admin/file/" class="btn btn-danger">Cancel</a>
+        </div>	
+    </fieldset>
+</form>
+{% endblock %}
