@@ -92,6 +92,21 @@ class NotificationAdmin(ModelView):
     column_filters = ('title',
                       'date',
                       User.username)
+                      
+class RequestAdmin(ModelView):
+    def is_accessible(self):
+        return current_user.has_role('Admin')
+    # Visible columns in the list view
+    column_exclude_list = ['text']
+    # List of columns that can be sorted. For 'user' column, use User.email as
+    # a column.
+    column_sortable_list = ('title''title', 'author', 'edition', '')
+    # Full text search
+    column_searchable_list = ('title', User.username)
+    # Column filters
+    column_filters = ('title',
+                      'created_at',
+                      User.username)
     
 class FileDataAdmin(ModelView):
     def is_accessible(self):
@@ -168,6 +183,7 @@ admin.add_view(AdminUpload(name='Upload', endpoint='upload'))
 #admin.add_view(AdminUpload(File, name='Upload'))
 #admin.add_view(MyFileAdmin(path, '/static/' , name='FileUpload'))
 admin.add_view(NotificationAdmin(Notification))
+admin.add_view(RequestAdmin(Request))
 admin.add_view(PostAdmin(Post))
 admin.add_view(UserAdmin(User))
 admin.add_view(RoleAdmin(Role))
