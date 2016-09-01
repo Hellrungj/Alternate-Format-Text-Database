@@ -5,53 +5,45 @@
 
     <div>
         {% if current_user.is_authenticated %}
+        <center><h1>Welcome, {{current_user.username}} </h1></center>
         <div class="container-fluid">
-            <div class="row">
-                <div class="table-responsive">
-                    <div class".col-md-2 ">
-                        <table class="table table-striped table-bordered table-hover" style="width:20%;">
-                            <thead>
-                				<tr>
-                					<th>Alt. Text Requests</th>
-                				</tr>
-            			    </thead>
-            			    <tbody>
-            			        {% for request in Requests %}
-                                <tr>
-                                    <td> 
-                                        <a href="{{ '/request/view/%s'%request.id}}">
-                                            {{request.user}}: {{request.created_at}}
-                                        </a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>    
-                        </table>
-                    </div>
-                </div>
-                <div class="table-responsive">
-                    <div class".col-md-2">
-                        <table class="table table-striped table-bordered table-hover" style="width:20%;">
-                            <thead>
-                				<tr>
-                					<th>Notifications</th>
-                				</tr>
-            			    </thead>
-            			    <tbody>
-            			        {% for Notification in Notifications %}
-                                <tr>
-                                    <td> 
-                                        <a href="{{ '/request/view/%s'%request.id}}">
-                                            {{Notification.user}}: {{Notification.title}} {{Notification.created_at}}
-                                        </a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>    
-                        </table>
-                    </div>
-                </div>
-            </div>
+            <table class="table table-striped table-bordered table-hover" style="width:30%;  display:inline-table;">
+                <thead>
+    				<tr>
+    					<th>Alt. Text Requests</th>
+    				</tr>
+			    </thead>
+			    <tbody>
+			        {% for request in Requests %}
+                    <tr>
+                        <td> 
+                            <!--<a href="{{ '/request/view/%s'%request.id}}"> -->
+                            <a href="/admin/request">
+                                {{request.user}}: {{request.created_at}}
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <table style="width:30%; display:inline-table">
+            </table>
+            <table class="table table-striped table-bordered table-hover" style="width:30%; float: right; display:inline-table">
+                <thead>
+    				<tr>
+    					<th>Notifications</th>
+    				</tr>
+			    </thead>
+			    <tbody>
+			        {% for Notification in Notifications %}
+                    <tr>
+                        <td> 
+                            {{Notification.user}}: {{Notification.title}} {{Notification.created_at}}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>    
+            </table>
         </div>
         
         {% else %}

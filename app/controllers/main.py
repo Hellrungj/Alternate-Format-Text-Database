@@ -25,7 +25,7 @@ def Index():
   amount = File.select().count()
   Search = "All Titles"
   Notifications = Notification.select().where(Notification.user == current_user.id)
-  TotalN = Notification.select().count()
+  TotalN = Notification.select().where(Notification.user == current_user.id).count()
   return render_template('index.html', cfg = cfg, items = items, current_user=current_user,
                           UserRole=UserRole, Notifications=Notifications, TotalN=TotalN)
   
@@ -35,7 +35,7 @@ def filedownload(cmd):
   try:
     file = File.select().where(File.id == cmd).get()
     filepath = ('static/files/uploads/'+ str(file.filename)).replace(" ", "")
-    return send_file(filepath, as_attachment=True, attachment_filename = file.fulltitle)
+    return send_file(filepath, as_attachment=True, attachment_filename = file.title)
   
   except Exception,e:
     app.logger.info("{0} attempting to upload file.".format(str(e)))
