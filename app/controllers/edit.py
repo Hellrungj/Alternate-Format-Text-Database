@@ -8,14 +8,14 @@ import datetime
 
 @app.route('/file/<num>', methods=['GET'])
 @login_required
-@roles_accepted("Admin","Labor Student")
+@roles_accepted("Admin","LaborStudent")
 def file(num):
   item = File.select().where(File.id == num).get()
   return render_template("edit.html", item = item, cfg = cfg, UserRole=UserRole)
   
 @app.route('/edit/<num>', methods=['POST'])
 @login_required
-@roles_accepted("Admin","Labor Student")
+@roles_accepted("Admin","LaborStudent")
 def edit(num):
   if request.method == 'POST':
     t  = request.form['title']
@@ -43,7 +43,7 @@ def edit(num):
 
 @app.route("/delete/<num>", methods = ["POST"])
 @login_required
-@roles_accepted("Admin","Labor Student")
+@roles_accepted("Admin","LaborStudent")
 def delete(num):
   try:
     file = File.select().where(File.id == num).get()
