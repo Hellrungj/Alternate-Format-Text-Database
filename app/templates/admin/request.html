@@ -3,21 +3,49 @@
 <div class="admin-form form-horizontal">
     <fieldset>
         <div>
+            <label for="title-t">Status:</label>
+        	<p>{{request.status}}</p>
+        </div>
+        <div>
             <label for="title-t">Title:</label>
-        	<textarea type="text" name="title" id="title-t" rows=1 cols=max class="form-control"></textarea>
+        	<p>{{request.title}}</p>
         </div>
         <div>
             <label for="Author-t">Author:</label>
-        	<textarea type="text" name="author" id="author-t" rows=1 cols=max class="form-control"></textarea>
+        	<p>{{request.author}}</p>
         </div>
         <div>
             <label for="Edition-t">Edition:</label>
-        	<textarea type="text" name="edition" id="edition-t" rows=1 cols=max class="form-control"></textarea>
+        	<p>{{request.edition}}</p>
         </div>
         <div>
             <label for="ISBN-t">ISBN:</label>
-        	<textarea type="text" name="ISBN" id="ISBN-t" rows=1 cols=max class="form-control"></textarea>
-        </div>	
+        	<p>{{request.ISBN}}</p>
+        </div>
+        <div>
+            <label for="Edition-t">Term:</label>
+        	<p>{{request.term}}</p>
+        </div>
+        <div>
+            <label for="ISBN-t">Course Number:</label>
+        	<p>{{request.course_number}}</p>
+        </div>
+        <div>
+            <label for="ISBN-t">User:</label>
+        	<p>{{request.user}}</p>
+        </div>
+        <div>
+            <label for="ISBN-t">Assigned:</label>
+        	<p>{{request.assigned}}</p>
+        </div>
+        <div>
+            <label for="ISBN-t">Instructor:</label>
+        	<p>{{request.instructor}}</p>
+        </div>
+        
+        
+        
+        
     </fieldset>
 </div> 
 {% endblock %}

@@ -59,6 +59,13 @@ class Notification(BaseModel):
 
     def __unicode__(self):
         return self.title
+
+class Status(BaseModel):
+    title = CharField(max_length=120)
+    description = TextField()
+    
+    def __unicode__(self):
+        return self.title        
         
 class Request(BaseModel):
     title = CharField(max_length=120)
@@ -66,11 +73,16 @@ class Request(BaseModel):
     edition = TextField(null=True)
     ISBN = TextField(null=True)
     created_at = DateTimeField()
-    user = ForeignKeyField(User)
+    term = TextField() #Banner 
+    course_number = TextField() #Banner
+    instructor = TextField() #Banner
+    user = TextField()
+    status = ForeignKeyField(Status)
+    assigned = ForeignKeyField(User)
 
     def __unicode__(self):
         return self.title
-
+        
 class File(BaseModel):
     title = TextField()
     author = TextField(null=True)

@@ -95,6 +95,12 @@ role3 = Role ( name = "Student",
 userrole = UserRole ( user = 3,
                       role = 3
                       ).save()
-              
-              
-              
+
+# Creating default status
+status_open = Status (title = "Open",
+                      description = "Shows that the request is open."
+                      ).save()
+                      
+status_close = Status (title = "Close",
+                      description = "Shows that the request is closed."
+                      ).save()

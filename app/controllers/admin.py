@@ -61,22 +61,6 @@ class UserRolesAdmin(ModelView):
         return current_user.has_role('Admin')
     # Visible columns in the list view
     column_exclude_list = ['text']
-    
-
-class PostAdmin(ModelView):
-    def is_accessible(self):
-        return current_user.has_role('Admin')
-    # Visible columns in the list view
-    column_exclude_list = ['text']
-    # List of columns that can be sorted. For 'user' column, use User.email as
-    # a column.
-    column_sortable_list = ('title', ('user', User.email), '')
-    # Full text search
-    column_searchable_list = ('title', User.username)
-    # Column filters
-    column_filters = ('title',
-                      'date',
-                      User.username)
                     
 class NotificationAdmin(ModelView):
     def is_accessible(self):
@@ -100,13 +84,22 @@ class RequestAdmin(ModelView):
     column_exclude_list = ['text']
     # List of columns that can be sorted. For 'user' column, use User.email as
     # a column.
-    column_sortable_list = ('title''title', 'author', 'edition', '')
+    column_sortable_list = ('title', 'author', 'edition', 'term', 'isbn',
+                            'created_at', 'course_number', 'user', 
+                            'instructor', 'status', 'assigned', '')
     # Full text search
-    column_searchable_list = ('title', User.username)
+    column_searchable_list = ('title', User.username, 'author', 'edition',
+                              'term', 'instructor')
     # Column filters
-    column_filters = ('title',
-                      'created_at',
+    column_filters = ('title', 'author', 'edition', 'term',
+                      'created_at', 'course_number', 'instructor',
                       User.username)
+                      
+class StatusAdmin(ModelView):
+    def is_accessible(self):
+        return current_user.has_role('Admin')
+    # Visible columns in the list view
+    column_exclude_list = ['text']
     
 class FileDataAdmin(ModelView):
     def is_accessible(self):
@@ -180,11 +173,9 @@ class StudentView(BaseView):
 
 admin.add_view(FileDataAdmin(File, name='Files'))
 admin.add_view(AdminUpload(name='Upload', endpoint='upload'))
-#admin.add_view(AdminUpload(File, name='Upload'))
-#admin.add_view(MyFileAdmin(path, '/static/' , name='FileUpload'))
-admin.add_view(NotificationAdmin(Notification))
+#admin.add_view(NotificationAdmin(Notification))
 admin.add_view(RequestAdmin(Request))
-admin.add_view(PostAdmin(Post))
+admin.add_view(StatusAdmin(Status))
 admin.add_view(UserAdmin(User))
 admin.add_view(RoleAdmin(Role))
 admin.add_view(UserRolesAdmin(UserRole))
