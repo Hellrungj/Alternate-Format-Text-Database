@@ -11,6 +11,7 @@ from models import *                # all the database models
 from app.logic.switch import switch # implements switch/case statements
 from flask_security import Security, PeeweeUserDatastore
 import os.path as op
+from flask_mail import Mail
 
 ''' Creates an Flask object; @app will be used for all decorators.
 from: http://simeonfranklin.com/blog/2012/jul/1/python-decorators-in-12-steps/
@@ -26,12 +27,35 @@ app.config.update(  SECRET_KEY = cfg['flask']['secret_key'],
                     DEBUG = cfg['flask']['debug'],
                     SECURITY_PASSWORD_HASH = cfg['flask_security']['security_password_hash'],
                     SECURITY_PASSWORD_SALT= cfg['flask_security']['security_password_salt'])
+                    
+app.config['MAIL_SERVER'] = 'smtp.example.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = 'username'
+app.config['MAIL_PASSWORD'] = 'password'
+mail = Mail(app)
 
 db = SqliteDatabase(cfg['databases']['dev'])
 
 # Setup Flask-Security    
 user_datastore = PeeweeUserDatastore(db, User, Role, UserRole)
 security = Security(app, user_datastore)
+
+# This processor is added to all templates
+@security.context_processor
+def security_context_processor():
+    return dict(hello="world")
+
+# This processor is added to only the register view
+@security.register_context_processor
+def security_register_processor():
+    return dict(something="else")
+    
+# This processor is added to all emails
+@security.mail_context_processor
+def security_mail_processor():
+    return dict(hello="world")
+
 path = op.join(op.dirname(__file__), 'static/files/uploads')
 
 # Builds all the database connections on app run

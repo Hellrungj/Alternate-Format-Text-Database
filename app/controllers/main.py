@@ -25,7 +25,7 @@ def Index():
   amount = File.select().count()
   Search = "All Titles"
   Notifications = Notification.select().where(Notification.user == current_user.id)
-  TotalN = Notification.select().count()
+  TotalN = Notification.select().where(Notification.user == current_user.id).count()
   return render_template('index.html', cfg = cfg, items = items, current_user=current_user,
                           UserRole=UserRole, Notifications=Notifications, TotalN=TotalN)
   

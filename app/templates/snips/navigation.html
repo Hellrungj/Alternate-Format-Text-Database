@@ -26,7 +26,14 @@
         </li>
       {% if request.path == "/index" %}
         <li id="notification_li" class="navbar-right">
-          <a href="#" id="notificationLink" style="color:black;"> Notifications <span id="notification_count">{{TotalN}}</span></a>
+          <a href="#" id="notificationLink" style="color:black;"> 
+            Notifications
+            {% if not TotalN == 0 %}
+            <span id="notification_count">
+              {{TotalN}}
+            </span>
+            {% endif %}
+          </a>
           <div id="notificationContainer">
             <div id="notificationTitle">Notifications</div>
             <div id="notificationsBody" class="notifications"></div>
