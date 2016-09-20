@@ -15,9 +15,9 @@ models:
   - Role
   - User
   - UserRole
-  - Post
   - Notification
   - Request
+  - Status
   - File
   
 flask:

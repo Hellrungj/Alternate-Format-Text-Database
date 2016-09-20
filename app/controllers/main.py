@@ -35,7 +35,7 @@ def filedownload(cmd):
   try:
     file = File.select().where(File.id == cmd).get()
     filepath = ('static/files/uploads/'+ str(file.filename)).replace(" ", "")
-    return send_file(filepath, as_attachment=True, attachment_filename = file.fulltitle)
+    return send_file(filepath, as_attachment=True, attachment_filename = file.title)
   
   except Exception,e:
     app.logger.info("{0} attempting to upload file.".format(str(e)))

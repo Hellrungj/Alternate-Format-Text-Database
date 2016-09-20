@@ -9,13 +9,13 @@ import datetime
 
 @app.route("/upload", methods = ["GET","POST"])
 @login_required
-@roles_accepted("Admin","Labor Student")
+@roles_accepted("Admin","LaborStudent")
 def uploadform():
   return render_template("upload.html", cfg = cfg, UserRole=UserRole)
 
 @app.route("/uploading", methods = ["POST"])
 @login_required
-@roles_accepted("Admin","Labor Student")
+@roles_accepted("Admin","LaborStudent")
 def uploading():
   try:
     app.logger.info("Attempting to upload file.")
@@ -77,7 +77,7 @@ def uploading():
     
 @app.route("/admin/uploading", methods = ["POST"])
 @login_required
-@roles_accepted("Admin","Labor Student")
+@roles_accepted("Admin","LaborStudent")
 def AdminUploading():
   try:
     app.logger.info("Attempting to upload file.")
