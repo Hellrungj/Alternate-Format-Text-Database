@@ -3,8 +3,7 @@ from __future__ import print_function
 Include all imports in this file; it will be called at the beginning of all files.
 '''
 # We need a bunch of Flask stuff
-from flask import Flask, render_template, redirect, \
-    request, g, url_for
+from flask import *
 import pprint
 from app import models
 from models import *                # all the database models

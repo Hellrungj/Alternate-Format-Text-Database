@@ -1,0 +1,47 @@
+{% extends "snips/base.html" %}
+{% set CurrentPage = "Requests" %}
+{% block body %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3>Avaliable Requests</h3>
+	</div>
+	<div class="panel-body">
+		<table id="example" class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Term</th>
+					<th>ISBN</th>
+					<th>Title</th>
+					<th>Created At</th>
+					<th>Author</th>
+					<th>Assigned</th>
+					<th>Edition</th>
+					<th>Course Number</th>
+					<th>User</th>
+					<th>Instructor</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for request in requests %}
+			{% if request.status != "Closed" %}
+            <tr>
+				<th><a style="color:black;" href="{{'/request/%s'%request.id}}">{{ request.status }}</a></th>
+				<th><a style="color:black;" href="{{'/request/%s'%request.id}}">{{ request.term }}</a></th>
+				<th><a style="color:black;" href="{{'/request/%s'%request.id}}">{{ request.ISBN }}</a></th>
+				<th><a style="color:black;" href="{{'/request/%s'%request.id}}">{{ request.title }}</a></th>
+				<th><a style="color:black;" href="{{'/request/%s'%request.id}}">{{ request.created_at }}</a></th>
+				<th><a style="color:black;" href="{{'/request/%s'%request.id}}">{{ request.author }}</a></th>
+				<th><a style="color:black;" href="{{'/request/%s'%request.id}}">{{ request.assigned }}</a></th>
+				<th><a style="color:black;" href="{{'/request/%s'%request.id}}">{{ request.edition }}</a></th>
+				<th><a style="color:black;" href="{{'/request/%s'%request.id}}">{{ request.course_number }}</a></th>
+				<th><a style="color:black;" href="{{'/request/%s'%request.id}}">{{ request.user }}</a></th>
+				<th><a style="color:black;" href="{{'/request/%s'%request.id}}">{{ request.instructor }}</a></th>
+			</tr>
+			{% endif %}
+			{% endfor %}
+   			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}

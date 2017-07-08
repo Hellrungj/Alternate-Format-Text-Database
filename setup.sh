@@ -60,3 +60,6 @@ pip install -U "flask_admin"
 
 pip install -U "hurry.filesize"
 # https://flask-admin.readthedocs.io/en/latest/
+
+pip install -U "mtgsdk"
+# https://github.com/MagicTheGathering/mtg-sdk-python

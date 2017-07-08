@@ -33,6 +33,8 @@ LaborNavibar:
     link: "/index"
   - title: "Upload"
     link: "/upload"
+  - title: "Requests"
+    link: "/requests"
     
 StudentNavibar:
   - title: "DAS Database"
