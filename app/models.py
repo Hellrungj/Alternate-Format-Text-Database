@@ -43,55 +43,31 @@ class UserRole(BaseModel):
     name = property(lambda self: self.role.name)
     description = property(lambda self: self.role.description)
 
-class Post(BaseModel):
-    title = CharField(max_length=120)
-    text = TextField(null=False)
-    date = DateTimeField()
-    user = ForeignKeyField(User)
-
-    def __unicode__(self):
-        return self.title
-        
-class Notification(BaseModel):
-    title = CharField(max_length=120)
-    date = DateTimeField()
-    user = ForeignKeyField(User)
-
-    def __unicode__(self):
-        return self.title
-
-class Status(BaseModel):
-    title = CharField(max_length=120)
-    description = TextField()
+class Food(BaseModel):
+    name = CharField(max_length=80)
+    calories = IntegerField(null=True)
+    serving_size = IntegerField(null=True)
+    total_fat = IntegerField(null=True)
+    saturated_fat = IntegerField(null=True)
+    trans_fat = IntegerField(null=True)
+    cholesterol = IntegerField(null=True)
+    sodium = IntegerField(null=True)
+    total_carbohydrate = IntegerField(null=True)
+    dietray_fiber = IntegerField(null=True)
+    suger = IntegerField(null=True)
+    protein = IntegerField(null=True)
+    vitamin_a = IntegerField(null=True)
+    vitamin_c = IntegerField(null=True)
+    calcium = IntegerField(null=True)
+    iron = IntegerField(null=True)
+    amount = IntegerField(null=True)
     
     def __unicode__(self):
-        return self.title        
-        
-class Request(BaseModel):
-    title = CharField(max_length=120)
-    author = TextField(null=True)
-    edition = TextField(null=True)
-    ISBN = TextField(null=True)
-    created_at = DateTimeField()
-    term = TextField() #Banner 
-    course_number = TextField() #Banner
-    instructor = TextField() #Banner
-    user = TextField()
-    status = ForeignKeyField(Status)
-    assigned = ForeignKeyField(User)
+        return self.name
+    
+class Profile(BaseModel):
+    user = ForeignKeyField(User, related_name='profile')
+    calories = IntegerField()
+    
 
-    def __unicode__(self):
-        return self.title
-        
-class File(BaseModel):
-    title = TextField()
-    author = TextField(null=True)
-    edition = TextField(null=True)
-    size = TextField()
-    filename = TextField()
-    file_type = TextField()
-    created_at = DateTimeField()
-    last_modified = DateTimeField()
-    asigned = ForeignKeyField(User)
-    file_path = TextField()
-    hidden = IntegerField(default = 0) 
+    

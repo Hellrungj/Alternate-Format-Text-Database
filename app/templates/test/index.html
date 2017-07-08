@@ -1,0 +1,29 @@
+{% extends "snips/base.html" %}
+{% set CurrentPage = "Index" %}
+{% block body %}
+<div class="panel panel-default">
+	<div class="panel-body">
+		<table id="example" class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Author</th>
+					<th>Edition</th>
+					<th>Size</th>
+					<th>Last Modified</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for file in items %}
+            <tr>
+				<th><a style="color:black;" >{{ food.name }}</a></th>
+				<th><a style="color:black;" >{{ food.calories }}</a></th>
+				<th><a style="color:black;" >{{ food.serving_size }}</a></th>
+				<th><a style="color:black;" >{{ food.suger }}</a></th>
+			</tr>
+			{% endfor %}
+   			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}

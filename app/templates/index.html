@@ -1,47 +1,148 @@
-{% extends "snips/base.html" %}
-{% set CurrentPage = "Index" %}
-{% block body %}
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3>Welcome, {{current_user}}</h1>
-	</div>
-	<div class="panel-body">
-		<table id="example" class="display" cellspacing="0" width="100%">
-			<thead>
-				<tr>
-					<th>Title</th>
-					<th>Author</th>
-					<th>Edition</th>
-					<th>Size</th>
-					<th>Last Modified</th>
-				</tr>
-			</thead>
-			<tbody>
-			{% for file in items %}
-			{% if not file.hidden == 1 %}
-            <tr>
-				<th>
-					<div class="row">
-						<div class="col-md-2">
-							<a class="btn btn-default" href="{{ '/download/%s'%file.id}}">
-								<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
-							
-							</a>
-						</div>	
-						<div class="col-md 10">
-							<a style="color:black;" href="{{'/file/%s'%file.id}}">{{ file.title }}</a>
-						</div>
-					</div>
-				</th>
-				<th><a style="color:black;" href="{{'/file/%s'%file.id}}">{{ file.author }}</a></th>
-				<th><a style="color:black;" href="{{'/file/%s'%file.id}}">{{ file.edition }}</a></th>
-				<th><a style="color:black;" href="{{'/file/%s'%file.id}}">{{ file.size }}</a></th>
-				<th><a style="color:black;" href="{{'/file/%s'%file.id}}">{{ file.last_modified }}</a></th>
-			</tr>
-			{% endif %}
-			{% endfor %}
-   			</tbody>
-		</table>
-	</div>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Flask Inventory System</title>
+
+    <!-- Bootstrap Core CSS -->
+    <!-- {{ url_for('static', filename='style.css') }} -->
+    <link href="{{ url_for('static', filename = 'bower/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="{{ url_for('static', filename = 'bower/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="{{ url_for('static', filename = 'css/timeline.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename = 'css/sb-admin-2.css') }}" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="{{ url_for('static', filename = 'bower/morrisjs/morris.css') }}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{{ url_for('static', filename = 'bower/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Food Inventory 0.1</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                          <h3>Search...</h3>
+                          <!-- The URL is actually handled based on the /contains root. 
+                            -- it is a bit of a misnomer that we put "form" here. 
+                            -- It may be bad practice. -->
+                          <form action="/contains/form" method = "post">
+                            <div class="input-group custom-search-form">
+                                <input type="text" name="name" class="form-control" placeholder="Containing the phrase...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                          </form>
+                            <!-- /input-group -->
+                        </li>
+                        <li class="sidebar-search">
+                          <h3>Insert...</h3>
+                        <form action="/insert" method = "post">
+                            <div class="input-group custom-search-form">
+                              <div>
+                                <input type="text" name="name" class="form-control" placeholder="Name" required>
+                              </div>
+
+                              <div>
+                                <input type="text" name="calories" class="form-control" placeholder="Calories" required>
+                              </div>
+                              
+                              <div>
+                                <input type="text" name="amount" class="form-control" placeholder="Amount" required>
+                              </div>
+                              
+                              <div class="text-right">
+                                <button class="btn btn-default" type="submit">
+                                  Insert
+                                </button>
+                              </div>
+                            </div>
+                        </form>
+                      </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Current Inventory</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            
+            <div class = "row">
+              {% block body %}{% endblock %}
+            </div>
+            
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="../bower_components/raphael/raphael-min.js"></script>
+    <script src="../bower_components/morrisjs/morris.min.js"></script>
+    <script src="../js/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>

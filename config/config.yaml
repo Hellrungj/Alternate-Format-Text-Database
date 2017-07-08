@@ -15,10 +15,8 @@ models:
   - Role
   - User
   - UserRole
-  - Notification
-  - Request
-  - Status
-  - File
+  - Food
+  - Profile
   
 flask:
   secret_key: '123456790'
@@ -28,17 +26,11 @@ flask_security:
   security_password_salt: "ATGUOHAELKiubahiughaerGOJAEGj"
   
 # this makes the navigation bar     #src: "/static/images/NavLogo.png"
-LaborNavibar:
-  - title: "DAS Database"
-    link: "/index"
-  - title: "Upload"
-    link: "/upload"
-    
-StudentNavibar:
-  - title: "DAS Database"
-    link: "/index"
-  - title: "Request Alt. Text"
-    link: "/request"
+mainMenu:
+  - title: "Index"
+    link: "/"
+  - title: "Profile"
+    link: "/profile"
 
 fileOperations:
   allowedExtension:

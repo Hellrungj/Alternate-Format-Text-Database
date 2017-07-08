@@ -1,58 +1,12 @@
 <!-- This is the navigation bar that should be found at the top of the page -->
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse">
-      <ul class="nav nav-tabs">
-      {% if not UserRole.select().where(UserRole.role == current_user.id, UserRole.user == 3) %}
-        {% for menuItem in cfg['LaborNavibar'] %}
-          <li role="presentation">
-            <a href="{{menuItem['link']}}" style="color:black;">{{menuItem['title']}}</a>
-          </li>
-        {% endfor %}
-      {% else %}
-        {% for menuItem in cfg['StudentNavibar'] %}
-          <li role="presentation">
-            <a href="{{menuItem['link']}}" style="color:black;">{{menuItem['title']}}</a>
-          </li>
-        {% endfor %}
-      {% endif %}
-      {% if current_user.id == 1 %}
-        <li role="presentation">
-            <a href="/admin" style="color:black;">AdminView</a>
-        </li>  
-      {% endif %}
-        <li role="presentation" class="navbar-right">
-          <a href="/logout" style="color:black;">Logout</a>
-        </li>
-      {% if request.path == "/index" %}
-        <li id="notification_li" class="navbar-right">
-          <a href="#" id="notificationLink" style="color:black;"> 
-            Notifications
-            {% if not TotalN == 0 %}
-            <span id="notification_count">
-              {{TotalN}}
-            </span>
-            {% endif %}
-          </a>
-          <div id="notificationContainer">
-            <div id="notificationTitle">Notifications</div>
-            <div id="notificationsBody" class="notifications"></div>
-               <!-- <div class="content"><img src="" width="50px" height="50px" alt="Profile Picture"> Developerdesks comment something</div>--> 
-            
-            {% for notification in Notifications %}
-            <div class="content"> 
-              {{notification.user}}: {{notification.title}}
-              <a class="btn" href="#"> 
-                <span id="notificationDelete" class="glyphicon glyphicon-remove" aria-hidden="true">
-                </span>
-              </a>
-            </div>
-            {% endfor %}
-            <div id="notificationFooter"><a href="#"></a></div>
-          </div>
-        </li>
-      {% endif %}
-      </ul>
-    </div>    
+  <div class="container">
+    <ul class="nav navbar-nav"> 
+    {% for menuItem in cfg['mainMenu'] %}
+      <li {% if menuItem['title'] == currentPage %} class="active" {% endif %}>
+        <a href="{{menuItem['link']}}">{{menuItem['title']}}</a>
+      </li>
+    {% endfor %} 
+    </ul>
   </div>
 </nav>

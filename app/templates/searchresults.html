@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+{% block body %}
+
+{% macro itemrow(name, value='', count = 0) -%}
+  <!-- Debugging Name: {{name}} Value: {{value}} -->
+  <div class = "row">
+    <div class = "col-md-3 text-left col-md-offset-1">{{name}}</div>
+    <div class = "col-md-1 text-right">{{value}}</div>
+    <div class = "col-md-1 text-right">{{count}}</div>
+  </div>
+{%- endmacro %}
+
+<center>
+  <div class = "row">
+    <div class = "col-md-3 text-left col-md-offset-1"><b>Name</b></div>
+    <div class = "col-md-1 text-right"><b>Calories</b></div>
+    <div class = "col-md-1 text-right"><b>Amount</b></div>
+  </div>
+    {% for i in items %}
+      {{ itemrow (i['name'], value = i['calories'], count = i['amount']) }}
+    {% endfor %}
+</center>
+
+<!-- This is officially gross. -->
+<!--
+<script>
+  history.replaceState({}, 'some title', '/');
+</script>
+-->
+{% endblock %}
