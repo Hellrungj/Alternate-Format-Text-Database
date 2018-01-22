@@ -1,4 +1,4 @@
-# Alternate-Format-Text-Database
+# Alternate Format Text Database
 Alternate Format Text Database is PeeWee Flask Web Application that combines Flask-Security and Flask-Admin  
 by John Hellrung
 August 8, 2016
