@@ -26,13 +26,6 @@ flask_security:
   security_password_salt: "ATGUOHAELKiubahiughaerGOJAEGj"
   
 # this makes the navigation bar     #src: "/static/images/NavLogo.png"
-<<<<<<< HEAD
-mainMenu:
-  - title: "Index"
-    link: "/"
-  - title: "Profile"
-    link: "/profile"
-=======
 LaborNavibar:
   - title: "DAS Database"
     link: "/index"
@@ -46,7 +39,6 @@ StudentNavibar:
     link: "/index"
   - title: "Request Alt. Text"
     link: "/request"
->>>>>>> 9c35178847f7ffcfba3bec48c69e42fc82e14e93
 
 fileOperations:
   allowedExtension:
