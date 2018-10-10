@@ -7,16 +7,15 @@ $("#notification_count").fadeOut("slow");
 return false;
 });
 
-//Document Click hiding the popup 
+//Document Click
 $(document).click(function()
 {
 $("#notificationContainer").hide();
 });
-
-//Popup on click
+//Popup Click
 $("#notificationContainer").click(function()
 {
-return false;
+return false
 });
 
 });

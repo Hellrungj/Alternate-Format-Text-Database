@@ -14,6 +14,7 @@ def Index():
   
 @app.route('/profile')
 @login_required
+<<<<<<< HEAD
 def Profile():
   food = Food.select()
   return render_template("profile.html", cfg = cfg, User=str(current_user.username), food = food )
@@ -69,6 +70,13 @@ def Index():
               .where(types='creature') \
               .where(colors='red,white') \
               .all()
+=======
+def filedownload(cmd):
+  try:
+    file = File.select().where(File.id == cmd).get()
+    filepath = ('static/files/uploads/'+ str(file.filename)).replace(" ", "")
+    return send_file(filepath, as_attachment=True, attachment_filename = file.fulltitle)
+>>>>>>> parent of 9e7bcc7... Mering with master
   
   # Get cards on a specific page / pageSize
   cards = Card.where(page=50).where(pageSize=50).all()

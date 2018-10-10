@@ -15,8 +15,15 @@ models:
   - Role
   - User
   - UserRole
+<<<<<<< HEAD
   - Food
   - Profile
+=======
+  - Post
+  - Notification
+  - Request
+  - File
+>>>>>>> parent of 9e7bcc7... Mering with master
   
 flask:
   secret_key: '123456790'

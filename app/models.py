@@ -43,6 +43,7 @@ class UserRole(BaseModel):
     name = property(lambda self: self.role.name)
     description = property(lambda self: self.role.description)
 
+<<<<<<< HEAD
 class Food(BaseModel):
     name = CharField(max_length=80)
     calories = IntegerField(null=True)
@@ -71,3 +72,45 @@ class Profile(BaseModel):
     
 
     
+=======
+class Post(BaseModel):
+    title = CharField(max_length=120)
+    text = TextField(null=False)
+    date = DateTimeField()
+    user = ForeignKeyField(User)
+
+    def __unicode__(self):
+        return self.title
+        
+class Notification(BaseModel):
+    title = CharField(max_length=120)
+    date = DateTimeField()
+    user = ForeignKeyField(User)
+
+    def __unicode__(self):
+        return self.title
+        
+class Request(BaseModel):
+    title = CharField(max_length=120)
+    author = TextField(null=True)
+    edition = TextField(null=True)
+    ISBN = TextField(null=True)
+    created_at = DateTimeField()
+    user = ForeignKeyField(User)
+
+    def __unicode__(self):
+        return self.title
+
+class File(BaseModel):
+    title = TextField()
+    author = TextField(null=True)
+    edition = TextField(null=True)
+    size = TextField()
+    filename = TextField()
+    file_type = TextField()
+    created_at = DateTimeField()
+    last_modified = DateTimeField()
+    asigned = ForeignKeyField(User)
+    file_path = TextField()
+    hidden = IntegerField(default = 0) 
+>>>>>>> parent of 9e7bcc7... Mering with master

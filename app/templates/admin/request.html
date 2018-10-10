@@ -1,0 +1,23 @@
+{% extends 'snips/base.html' %}
+{% block body %}
+<div class="admin-form form-horizontal">
+    <fieldset>
+        <div>
+            <label for="title-t">Title:</label>
+        	<textarea type="text" name="title" id="title-t" rows=1 cols=max class="form-control"></textarea>
+        </div>
+        <div>
+            <label for="Author-t">Author:</label>
+        	<textarea type="text" name="author" id="author-t" rows=1 cols=max class="form-control"></textarea>
+        </div>
+        <div>
+            <label for="Edition-t">Edition:</label>
+        	<textarea type="text" name="edition" id="edition-t" rows=1 cols=max class="form-control"></textarea>
+        </div>
+        <div>
+            <label for="ISBN-t">ISBN:</label>
+        	<textarea type="text" name="ISBN" id="ISBN-t" rows=1 cols=max class="form-control"></textarea>
+        </div>	
+    </fieldset>
+</div> 
+{% endblock %}
