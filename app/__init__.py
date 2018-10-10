@@ -13,4 +13,8 @@ from app import allImports
 #import your new python files here. It is not a part of the module until it is imported
 print("Starting application")
 from app.controllers.admin import *
+from app.controllers.auth import *
+from app.controllers.edit import *
 from app.controllers.main import *
+from app.controllers.upload import *
+from app.controllers.forms import *
